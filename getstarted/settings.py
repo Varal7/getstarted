@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'event',
-    'wiget_tweaks',
+    'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (

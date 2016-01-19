@@ -16,6 +16,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from event import views
+
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', views.index, name='index'),
+    url(r'^news$', views.news, name='news'),
+    url(r'^programm$', views.programm, name='programm'),
+    url(r'^info$', views.info, name='info'),
+    url(r'^contact$', views.contact, name='contact'),
+    url(r'^', views.index, name='index'),
 ]
