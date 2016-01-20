@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^register$', views.register, name='register'),
+    url(r'^update$', views.update_cv, name='update_cv'),
     url(r'^register_done$', views.register_done, name='register_done'),
     url(r'^fkz_answer$', views.fkz_answer, name='fkz_answer'),
     url(r'^login$', views.fkz_do_login, name='login'),

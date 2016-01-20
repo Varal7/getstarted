@@ -11,7 +11,7 @@ class Participant(models.Model):
     username = models.CharField(
     "Nom d'utilisateur",
     max_length=254,
-    unique=True,
+    # unique=True,
     help_text=_('Required. 254 characters or fewer. Letters, digits and @/./+/-/_ only.'),
     validators=[
         validators.RegexValidator(
@@ -21,12 +21,16 @@ class Participant(models.Model):
         ),
     ],
     error_messages={
-        'unique': _("Tu es déjà inscrit"),
+        # 'unique': _("Tu es déjà inscrit"),
     },
     )
     first_name = models.CharField(_('first name'), max_length=30)
     last_name = models.CharField(_('last name'), max_length=30)
-    email = models.EmailField(_('email address'), unique=True, error_messages={'unique': "Un autre utilisateur a déjà cette adresse de courriel."})
+    email = models.EmailField(_('email address'),
+    # unique=True,
+     error_messages={
+    # 'unique': "Un autre utilisateur a déjà cette adresse de courriel."
+    })
     is_active = models.BooleanField(
         _('active'),
         default=True,

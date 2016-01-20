@@ -37,6 +37,9 @@
 	   				                <li class="dropdown">
 	   				                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>{{ request.session.firstname }} {{ request.session.lastname }} </b><span class="caret"></span></a>
 	   				                    <ul class="dropdown-menu">
+											{% if request.session.registered %}
+											<li><a href="{% url 'update_cv' %}">Mettre à jour mon CV</a></li>
+											{% endif %}
 	   				                        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
 	   				                    </ul>
 	   				                </li>

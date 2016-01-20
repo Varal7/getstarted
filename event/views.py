@@ -24,7 +24,27 @@ def contact(request):
     return render(request, "event/contact.html")
 
 def isRegistered(hruid):
-    return Participant.objects.filter(username=hruid, isActive=True).exists()
+    return Participant.objects.filter(username=hruid, is_active=True).exists()
+
+
+def update_cv(request):
+    if 'authentificated' in request.session.keys():
+        if isRegistered(request.session['hruid']):
+            if request.method == "POST":
+                form = UpdateCvForm(request.POST, request.FILES)
+                if form.is_valid():
+                    try:
+                        p = Participant.objects.get(username=request.session['hruid'], is_active=True)
+                        p.cv = form.cleaned_data['cv']
+                        p.save()
+                        return redirect(reverse('index') + '#register_done')
+                    except:
+                        print ('Something weird happened')
+            else:
+                form = UpdateCvForm()
+            return render(request, "event/register.html", {'form':form})
+    return redirect(reverse('index'))
+
 
 
 def register(request):
