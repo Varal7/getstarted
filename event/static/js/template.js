@@ -51,6 +51,10 @@
 		  $('#register_done').modal('show');
 		}
 
+		if(window.location.href.indexOf('#update_done') != -1) {
+		  $('#update_done').modal('show');
+		}
+
 		if(window.location.href.indexOf('#already_registered') != -1) {
 		  $('#already_registered').modal('show');
 		}

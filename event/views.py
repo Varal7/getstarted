@@ -37,7 +37,7 @@ def update_cv(request):
                         p = Participant.objects.get(username=request.session['hruid'], is_active=True)
                         p.cv = form.cleaned_data['cv']
                         p.save()
-                        return redirect(reverse('index') + '#register_done')
+                        return redirect(reverse('index') + '#update_done')
                     except:
                         print ('Something weird happened')
             else:
