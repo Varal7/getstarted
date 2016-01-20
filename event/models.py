@@ -47,6 +47,8 @@ class Participant(models.Model):
 
     BOOL_CHOICES = ((True, _('Yes')), (False, _('No')))
     found_stage = models.BooleanField("As-tu trouvé ton prochain stage ?", choices=BOOL_CHOICES, default=1)
+    want_cocktail = models.BooleanField("Souhaites-tu participer au cocktail ?", choices=BOOL_CHOICES, default=0)
+
 
     YEAR_IN_SCHOOL_CHOICES = (
     ('2', '2A'),

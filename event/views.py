@@ -66,6 +66,7 @@ def register(request):
                                               'last_name': request.session['lastname'],
                                               'email': request.session['email'],
                                               'promo': request.session['promo'],
+                                              'want_cocktail': False,
                                     })
         return render(request, "event/register.html", {'form':form})
 
