@@ -83,3 +83,6 @@ class Participant(models.Model):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.first_name + ' ' + self.last_name
