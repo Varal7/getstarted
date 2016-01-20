@@ -3,4 +3,5 @@ db.sqlite3
 *.pyc.*
 **/__pycache__
 *.swp
-
+fkz_key.txt
+secret_key.txt

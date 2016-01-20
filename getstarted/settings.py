@@ -20,7 +20,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vm4&sjy$y_p8pva(xevyw5mjr66657*)_+7$mfm=8)qz&h&l!#'
+with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
+    SECRET_KEY = f.read().strip()
+
+with open(os.path.join(BASE_DIR, 'fkz_key.txt')) as f:
+    FKZ_KEY = f.read().strip()
+    
+FKZ_PAGE = "http://localhost:8000/fkz_answer"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -109,9 +115,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "assets/media/")
 
 MEDIA_URL = '/assets/media/'
 
-#FKZ_KEY
-FKZ_KEY = "csu"
-FKZ_PAGE = "http://localhost:8000/fkz_answer"
 
 
 #UPLOAD
