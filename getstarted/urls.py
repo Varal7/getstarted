@@ -26,5 +26,10 @@ urlpatterns = [
     url(r'^programm$', views.programm, name='programm'),
     url(r'^info$', views.info, name='info'),
     url(r'^contact$', views.contact, name='contact'),
+    url(r'^fkz_answer$', views.fkz_answer, name='fkz_answer'),
+    url(r'^login$', views.fkz_do_login, name='login'),
+    url(r'^logout$', views.logout, name='logout'),
+
+
     url(r'^', views.index, name='index'),
 ]

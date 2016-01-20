@@ -19,6 +19,21 @@
                  <li><a href="{% url 'index' %}">Infos Pratiques</a></li>
                  <li><a href="{% url 'index' %}">Contact</a></li>
              </ul>
-         </div><!-- /.navbar-collapse -->
+             <ul class="nav navbar-nav navbar-right">
+                 {% if request.session.authentificated %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>{{ request.session.firstname }} {{ request.session.lastname }} </b><span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="">Changer de mot de passe</a></li>
+                        <li><a href="">Modifier mon profil</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+                    </ul>
+                    </li>
+                {% else %}
+                <li><a href="{% url 'login' %}">Connexion via Frankiz</a></li>
+                {% endif %}
+            </ul>
+        </div><!-- /.navbar-collapse -->
      </div><!-- /.container-fluid -->
  </nav>
