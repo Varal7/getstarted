@@ -24,7 +24,7 @@ def contact(request):
     return render(request, "event/contact.html")
 
 def isRegistered(hruid):
-    return Participant.objects.filter(username=hruid).exists()
+    return Participant.objects.filter(username=hruid, isActive=True).exists()
 
 
 def register(request):
