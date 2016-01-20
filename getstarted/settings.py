@@ -101,10 +101,27 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/assets/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "assets/static/")
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "assets/media/")
 
 MEDIA_URL = '/assets/media/'
+
+#FKZ_KEY
+FKZ_KEY = "csu"
+FKZ_PAGE = "http://localhost:8000/fkz_answer"
+
+
+#UPLOAD
+CONTENT_TYPES = ['application/pdf']
+# 2.5MB - 2621440
+# 5MB - 5242880
+# 10MB - 10485760
+# 20MB - 20971520
+# 50MB - 5242880
+# 100MB 104857600
+# 250MB - 214958080
+# 500MB - 429916160
+MAX_UPLOAD_SIZE = "5242880"

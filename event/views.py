@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from urllib.parse import urlencode
+from django.conf import settings
 import time
 import json
 import hashlib
@@ -7,7 +8,7 @@ from .forms import *
 
 # Create your views here.
 
-FKZ_KEY = "csu"
+
 fields = ['hruid', 'email', 'firstname', 'lastname', 'promo', 'rights']
 
 def index(request):
@@ -65,7 +66,7 @@ def fkz_answer(request):
     ts = request.GET.get("timestamp")
     h = request.GET.get("hash")
     location = request.GET.get("location")
-    c = (ts + FKZ_KEY + response).encode('utf-8')
+    c = (ts + settings.FKZ_KEY + response).encode('utf-8')
     if abs(int(time.time()) - int(ts)) > 600:
         return redirect("/login_required/")
 
@@ -82,7 +83,7 @@ def fkz_answer(request):
 
 def fkz_do_login(request, location = "/"):
     ts = str(int(time.time()))
-    page = "http://localhost:8000/fkz_answer"
+    settings.FKZ_PAGE = "http://localhost:8000/fkz_answer"
     r = json.dumps(["names", "email", "promo", "rights"])
     c = (ts + page + FKZ_KEY + r).encode('utf-8')
     h = hashlib.md5(c).hexdigest()

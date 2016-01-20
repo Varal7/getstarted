@@ -10,7 +10,7 @@
 (function($){
 	$(document).ready(function(){
 
-		$(".banner-image").backstretch('static/images/Drahi.jpg');
+		$(".banner-image").backstretch('assets/static/images/Drahi.jpg');
 
 		// Fixed header
 		//-----------------------------------------------
