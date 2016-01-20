@@ -22,9 +22,6 @@ from event import views
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
-    url(r'^news$', views.news, name='news'),
-    url(r'^programm$', views.programm, name='programm'),
-    url(r'^info$', views.info, name='info'),
     url(r'^contact$', views.contact, name='contact'),
     url(r'^fkz_answer$', views.fkz_answer, name='fkz_answer'),
     url(r'^login$', views.fkz_do_login, name='login'),

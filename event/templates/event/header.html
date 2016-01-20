@@ -1,0 +1,76 @@
+{% load staticfiles %}
+<header class="header fixed clearfix navbar navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-4">
+				<!-- header-left start -->
+				<!-- ================ -->
+				<div class="header-left clearfix">
+					<!-- logo -->
+					<!-- <div class="logo smooth-scroll">
+						<a href="{% url 'index' %}"><img id="logo" src="{% static "images/getstarted_complet.png" %}" height="700px" alt="Get Started"></a>
+					</div> -->
+					<!-- name-and-slogan -->
+					<div class="site-name-and-slogan smooth-scroll">
+						<div class="site-name"><a href="{% url 'index' %}">GET.STARTED</a></div>
+						<div class="site-slogan">LES RENCONTRES ÉTUDIANTS/START-UP'DE L'X</div>
+					</div>
+				</div>
+				<!-- header-left end -->
+			</div>
+			<div class="col-md-8">
+				<!-- header-right start -->
+				<!-- ================ -->
+				<div class="header-right clearfix">
+					<!-- main-navigation start -->
+					<!-- ================ -->
+					<div class="main-navigation animated">
+						<!-- navbar start -->
+						<!-- ================ -->
+						<nav class="navbar navbar-default" role="navigation">
+							<div class="container-fluid">
+								<!-- Toggle get grouped for better mobile display -->
+								<div class="navbar-header">
+									<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+								</div>
+								<!-- Collect the nav links, forms, and other content for toggling -->
+								<div class="collapse navbar-collapse scrollspy smooth-scroll" id="navbar-collapse-1">
+									<ul class="nav navbar-nav navbar-left">
+	   				                 <li><a href="{% url 'index' %}#home">Accueil</a></li>
+	   				                 <li><a href="{% url 'index' %}#event">L'événement</a></li>
+	   				                 <li><a href="{% url 'index' %}">Start-up</a></li>
+									 <li><a href="{% url 'index' %}">Partenaires</a></li>
+	   				                 <li><a href="{% url 'index' %}">S'inscrire</a></li>
+	   				             </ul>
+	   				             <ul class="nav navbar-nav navbar-right">
+	   				                 {% if request.session.authentificated %}
+	   				                <li class="dropdown">
+	   				                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><b>{{ request.session.firstname }} {{ request.session.lastname }} </b><span class="caret"></span></a>
+	   				                    <ul class="dropdown-menu">
+	   				                        <!-- <li><a href="">Changer de mot de passe</a></li>
+	   				                        <li><a href="">Modifier mon profil</a></li>
+	   				                        <li role="separator" class="divider"></li> -->
+	   				                        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
+	   				                    </ul>
+	   				                    </li>
+	   				                {% else %}
+	   				                <li><a href="{% url 'login' %}">Connexion via Frankiz</a></li>
+	   				                {% endif %}
+	   				            </ul>
+								</div>
+							</div>
+						</nav>
+						<!-- navbar end -->
+					</div>
+					<!-- main-navigation end -->
+				</div>
+				<!-- header-right end -->
+			</div>
+		</div>
+	</div>
+</header>
