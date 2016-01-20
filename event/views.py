@@ -83,8 +83,7 @@ def fkz_answer(request):
 
 def fkz_do_login(request, location = "/"):
     ts = str(int(time.time()))
-    settings.FKZ_PAGE = "http://localhost:8000/fkz_answer"
     r = json.dumps(["names", "email", "promo", "rights"])
-    c = (ts + page + FKZ_KEY + r).encode('utf-8')
+    c = (ts + settings.FKZ_PAGE + FKZ_KEY + r).encode('utf-8')
     h = hashlib.md5(c).hexdigest()
-    return redirect("http://www.frankiz.net/remote?"+urlencode([('timestamp',ts),('site',page),('location',location),('hash',h),('request',r)]))
+    return redirect("http://www.frankiz.net/remote?"+urlencode([('timestamp',ts),('site',settings.FKZ_PAGE),('location',location),('hash',h),('request',r)]))
