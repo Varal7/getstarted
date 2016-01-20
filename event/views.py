@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
 from urllib.parse import urlencode
 from django.conf import settings
 import time
 import json
 import hashlib
 from .forms import *
+from .models import Participant
+
 
 # Create your views here.
 
@@ -20,24 +23,30 @@ def info(request):
 def contact(request):
     return render(request, "event/contact.html")
 
+def isRegistered(hruid):
+    return Participant.objects.filter(username=hruid).exists()
+
+
 def register(request):
     if 'authentificated' in request.session.keys():
         if request.method == "POST":
-            try:
-                form = RegisterForm(request.POST)
-                if form.is_valid():
-                    new_user = Participant.objects.create(**form.cleaned_data)
-            # redirect, or however you want to get to the main view
-                    return HttpResponseRedirect(reverse("register_done"))
-            except:
-                pass
+            form = RegisterForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                # redirect, or however you want to get to the main view
+                request.session['registered'] = True
+                return redirect(reverse('index') + '#register_done')
+
         else:
-            form = RegisterForm(initial={'username': request.session['hruid'],
-                                          'first_name': request.session['firstname'],
-                                          'last_name': request.session['lastname'],
-                                          'email': request.session['email'],
-                                          'promo': request.session['promo'],
-                                })
+            if isRegistered(request.session['hruid']):
+                return redirect(reverse('index') + '#already_registered')
+            else:
+                form = RegisterForm(initial={'username': request.session['hruid'],
+                                              'first_name': request.session['firstname'],
+                                              'last_name': request.session['lastname'],
+                                              'email': request.session['email'],
+                                              'promo': request.session['promo'],
+                                    })
         return render(request, "event/register.html", {'form':form})
 
     else:
@@ -76,14 +85,17 @@ def fkz_answer(request):
     data = json.loads(response)
     for el in fields:
         request.session[el] = data[el]
-    print (request.session['lastname'])
-    request.session['authentificated'] = True
-    return redirect(location)
 
+    request.session['authentificated'] = True
+    if isRegistered(request.session['hruid']):
+        request.session['registered'] = True
+    else:
+        request.session['registered'] = False
+    return redirect(location)
 
 def fkz_do_login(request, location = "/"):
     ts = str(int(time.time()))
     r = json.dumps(["names", "email", "promo", "rights"])
-    c = (ts + settings.FKZ_PAGE + FKZ_KEY + r).encode('utf-8')
+    c = (ts + settings.FKZ_PAGE + settings.FKZ_KEY + r).encode('utf-8')
     h = hashlib.md5(c).hexdigest()
     return redirect("http://www.frankiz.net/remote?"+urlencode([('timestamp',ts),('site',settings.FKZ_PAGE),('location',location),('hash',h),('request',r)]))

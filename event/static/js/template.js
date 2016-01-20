@@ -44,5 +44,16 @@
 			});
 		}
 
+
+		//Open modal
+		//-----------------------------------------------
+		if(window.location.href.indexOf('#register_done') != -1) {
+		  $('#register_done').modal('show');
+		}
+
+		if(window.location.href.indexOf('#already_registered') != -1) {
+		  $('#already_registered').modal('show');
+		}
+
 	}); // End document ready
 })(this.jQuery);

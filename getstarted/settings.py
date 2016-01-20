@@ -25,7 +25,7 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 
 with open(os.path.join(BASE_DIR, 'fkz_key.txt')) as f:
     FKZ_KEY = f.read().strip()
-    
+
 FKZ_PAGE = "http://localhost:8000/fkz_answer"
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -127,4 +127,4 @@ CONTENT_TYPES = ['application/pdf']
 # 100MB 104857600
 # 250MB - 214958080
 # 500MB - 429916160
-MAX_UPLOAD_SIZE = "5242880"
+MAX_UPLOAD_SIZE = 5242880

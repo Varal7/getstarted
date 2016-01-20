@@ -29,8 +29,8 @@
 									<ul class="nav navbar-nav navbar-left">
 	   				                 <li><a href="{% url 'index' %}#home">Accueil</a></li>
 	   				                 <li><a href="{% url 'index' %}#event">L'événement</a></li>
-	   				                 <li><a href="{% url 'index' %}">Start-up</a></li>
-									 <li><a href="{% url 'index' %}">Partenaires</a></li>
+	   				                 <li><a href="{% url 'index' %}#">Start-up</a></li>
+									 <li><a href="{% url 'index' %}#partenaires">Partenaires</a></li>
 	   				                 <li><a href="{% url 'register' %}">S'inscrire</a></li>
 	   				             </ul>
 	   				             <ul class="nav navbar-nav navbar-right">
@@ -40,10 +40,15 @@
 	   				                    <ul class="dropdown-menu">
 	   				                        <li><a href="{% url 'logout' %}">Déconnexion</a></li>
 	   				                    </ul>
-	   				                    </li>
+	   				                </li>
+									{% if request.session.registered %}
+									<li><a style="color:green">Inscrit<a/></li>
+									{% endif %}
+
 	   				                {% else %}
 	   				                <li><a href="{% url 'login' %}">Connexion via Frankiz</a></li>
 	   				                {% endif %}
+
 	   				            </ul>
 								</div>
 							</div>
