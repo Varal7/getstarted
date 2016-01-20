@@ -26,12 +26,12 @@ with open(os.path.join(BASE_DIR, 'secret_key.txt')) as f:
 with open(os.path.join(BASE_DIR, 'fkz_key.txt')) as f:
     FKZ_KEY = f.read().strip()
 
-FKZ_PAGE = "http://localhost:8000/fkz_answer"
+FKZ_PAGE = "http://getstarted.binets.fr/fkz_answer"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
