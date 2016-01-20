@@ -1,0 +1,44 @@
+{% extends "event/base.html" %}
+{% load staticfiles %}
+{% block content %}
+{% load widget_tweaks %}
+
+
+
+<div class="section">
+    <div class="container">
+        <h1 class="text-center title" id="ateliers">Inscription</h1>
+        <div class="separator"></div>
+        <form class="form-horizontal" action="" method="post">
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {{ hidden.errors }}
+            {% endfor %}
+
+            {% for field in form.visible_fields %}
+            <!-- {% if field.errors %}
+                {% for error in field.errors %}
+                    <div class="col-xs-12 col-sm-9 col-sm-offset-3 alert alert-warning" role=alert>{{ error }}</div>
+                {% endfor %}
+            {% endif %} -->
+                <div class=form-group>
+                    <div class='col-xs-6 col-sm-3'>{{ field.label_tag }}</div>
+                    <div class='col-xs-12 col-sm-9'>
+                        {{ field|add_class:'form-control' }}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <div class="alert alert-warning" role=alert>{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+
+            {% endfor %}
+
+
+            <input type="submit" value="Submit" />
+        </form>
+    </div>
+</div>
+{% endblock %}

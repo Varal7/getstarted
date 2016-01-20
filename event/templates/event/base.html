@@ -19,7 +19,7 @@
 
 
   </head>
-  <body>
+  <body class="no-trans fixed-header-on">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     {% include "event/header.html" %}
 
@@ -35,8 +35,10 @@
     <script src="{% static "js/isotope.pkgd.min.js" %}"></script>
     <script src="{% static "js/modernizr.js" %}"></script>
 
-    <script src="{% static "js/template.js" %}"></script>
     <script src="{% static "js/custom.js" %}"></script>
+    {%if template %}
+    <script src="{% static "js/template.js" %}"></script>
+    {% endif %}
 
   </body>
 </html>
