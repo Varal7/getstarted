@@ -59,5 +59,9 @@
 		  $('#already_registered').modal('show');
 		}
 
+		if(window.location.href.indexOf('#event_not_exists') != -1) {
+		  $('#event_not_exists').modal('show');
+		}
+
 	}); // End document ready
 })(this.jQuery);

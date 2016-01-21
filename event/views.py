@@ -6,7 +6,7 @@ import time
 import json
 import hashlib
 from .forms import *
-from .models import Participant
+from .models import Participant, Event
 
 
 # Create your views here.
@@ -14,18 +14,14 @@ from .models import Participant
 
 fields = ['hruid', 'email', 'firstname', 'lastname', 'promo', 'rights']
 
+
+
 def index(request):
-    return render(request, "event/index.html", {'template':True})
+    return render(request, "event/index.html", {'template':True, 'event':exists_event()})
 
-def info(request):
-    return render(request, "event/info.html")
-
-def contact(request):
-    return render(request, "event/contact.html")
 
 def isRegistered(hruid):
     return Participant.objects.filter(username=hruid, is_active=True).exists()
-
 
 def update_cv(request):
     if 'authentificated' in request.session.keys():
@@ -46,8 +42,11 @@ def update_cv(request):
     return redirect(reverse('index'))
 
 
-
 def register(request):
+    increment_count()
+    if not exists_event():
+        return redirect(reverse('index') + '#event_not_exists')
+
     if 'authentificated' in request.session.keys():
         if request.method == "POST":
             form = RegisterForm(request.POST, request.FILES)
@@ -72,11 +71,6 @@ def register(request):
 
     else:
         return fkz_do_login(request,"/register")
-
-
-
-def register_done(request):
-    return render(request, "event/register_done.html")
 
 
 def logout(request):
@@ -120,3 +114,11 @@ def fkz_do_login(request, location = "/"):
     c = (ts + settings.FKZ_PAGE + settings.FKZ_KEY + r).encode('utf-8')
     h = hashlib.md5(c).hexdigest()
     return redirect("http://www.frankiz.net/remote?"+urlencode([('timestamp',ts),('site',settings.FKZ_PAGE),('location',location),('hash',h),('request',r)]))
+
+def exists_event():
+    return Event.objects.filter(is_active=True).exists()
+
+def increment_count():
+    event, created =  Event.objects.get_or_create(pk=1)
+    event.hits = event.hits + 1
+    event.save()

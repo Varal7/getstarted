@@ -5,8 +5,26 @@ from django.core.exceptions import ValidationError
 from django.utils import timezone
 from django.core.mail import send_mail
 
-
 # Create your models here.
+class Event(models.Model):
+    name = models.CharField("Nom de l'événement", max_length=254, default="Get Started")
+
+    is_active = models.BooleanField(
+        _('active'),
+        default=False,
+        help_text=_(
+            'Activer pour lancer les inscriptions'
+        ),
+    )
+
+    created = models.DateTimeField(_('Created'), auto_now_add=True, editable=False)
+    modified = models.DateTimeField(_('Modified'), auto_now=True, editable=False)
+    hits = models.PositiveIntegerField(_('Hits'), default=0)
+
+    def __str__(self):              # __unicode__ on Python 2
+        return self.name
+
+
 class Participant(models.Model):
     username = models.CharField(
     "Nom d'utilisateur",
