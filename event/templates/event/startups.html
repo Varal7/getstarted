@@ -17,13 +17,13 @@
             <div class="col-sm-6 col-md-3 isotope-item">
                 <div class="image-box">
                     <div class="overlay-container">
-                        <img src="{{startup.image}}" alt="{{startup.name}}">
+                        <img src="assets/media/{{startup.image}}" alt="{{startup.name}}">
                         <a class="overlay" data-toggle="modal" data-target="#startup-{{startup.id}}">
                             <i class="fa fa-search-plus"></i>
                         </a>
                     </div>
                     <!-- <a class="btn btn-default btn-block" data-toggle="modal" data-target="#startup-{{startup.id}}" style="font-size: 0.8em; overflow: hidden; text-overflow: ellipsis;">{{startup.name}}</a> -->
-                    <a class="btn btn-block link link-default " data-toggle="modal" data-target="#startup-{{startup.id}}"" style="font-size: 0.8em; overflow: hidden; text-overflow: ellipsis;">{{startup.name}}</a>
+                    <a class="btn btn-block link link-default " data-toggle="modal" data-target="#startup-{{startup.id}}" style="font-size: 0.8em; overflow: hidden; text-overflow: ellipsis;">{{startup.name}}</a>
                 </div>
                 <!-- Modal -->
                 <div class="modal fade" id="startup-{{startup.id}}" tabindex="-1">
@@ -39,7 +39,7 @@
                                         {{startup.description}}
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="{{startup.id}}" alt="{{startup.name}}">
+                                        <img src="assets/media/{{startup.image}}" alt="{{startup.name}}">
                                     </div>
                                 </div>
                             </div>
