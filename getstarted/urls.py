@@ -18,17 +18,29 @@ from django.contrib import admin
 
 from event import views
 
+from django.conf import settings
+
 
 urlpatterns = [
     url(r'^admin', include(admin.site.urls)),
     url(r'^$', views.index, name='index'),
     url(r'^register$', views.register, name='register'),
     url(r'^update$', views.update_cv, name='update_cv'),
+    url(r'^startups$', views.startups, name='startups'),
     url(r'^fkz_answer$', views.fkz_answer, name='fkz_answer'),
     url(r'^login$', views.fkz_do_login, name='login'),
     url(r'^login_required$', views.login_required, name='login_required'),
     url(r'^logout$', views.logout, name='logout'),
-
-
     url(r'^', views.index, name='index'),
 ]
+
+
+if settings.DEBUG:
+    print("debug");
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
+        url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.STATIC_ROOT,
+        })]

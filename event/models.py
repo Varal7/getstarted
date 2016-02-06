@@ -24,6 +24,14 @@ class Event(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return self.name
 
+class Startup(models.Model):
+    name = models.CharField("Nom de la stat-up", max_length=254)
+    description = models.TextField("Description", blank=True)
+    image = models.FileField("Image :", upload_to='startups')
+    def __str__(self):              # __unicode__ on Python 2
+        return self.name
+
+
 
 class Participant(models.Model):
     username = models.CharField(

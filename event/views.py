@@ -6,7 +6,7 @@ import time
 import json
 import hashlib
 from .forms import *
-from .models import Participant, Event
+from .models import Participant, Event, Startup
 
 
 # Create your views here.
@@ -18,6 +18,11 @@ fields = ['hruid', 'email', 'firstname', 'lastname', 'promo', 'rights']
 
 def index(request):
     return render(request, "event/index.html", {'template':True, 'event':exists_event()})
+
+
+def startups(request):
+    startups = Startup.objects.all()
+    return render(request, "event/startups.html",{'startups':startups})
 
 
 def isRegistered(hruid):
