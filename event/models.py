@@ -95,7 +95,7 @@ class Participant(models.Model):
     # file will be uploaded to MEDIA_ROOT/user_<id>/<filename>
         return 'user_{0}/{1}'.format(instance.username, filename)
 
-    cv = models.FileField("Ton CV (format .pdf) :", upload_to=user_directory_path)
+    cv = models.FileField("Ton CV au format .pdf (facultatif) :", upload_to=user_directory_path, blank=True)
 
 
 

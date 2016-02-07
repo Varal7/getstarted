@@ -25,12 +25,13 @@ class RegisterForm(forms.ModelForm):
         }
     def clean_cv(self):
         cv = self.cleaned_data['cv']
-        content_type = cv.content_type
-        if content_type in settings.CONTENT_TYPES:
-            if cv._size > settings.MAX_UPLOAD_SIZE:
-                raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s') % (filesizeformat(settings.MAX_UPLOAD_SIZE), filesizeformat(cv._size)))
-        else:
-            raise forms.ValidationError(_('File type is not supported'))
+        if cv is not None:
+            content_type = cv.content_type
+            if content_type in settings.CONTENT_TYPES:
+                if cv._size > settings.MAX_UPLOAD_SIZE:
+                    raise forms.ValidationError(_('Please keep filesize under %s. Current filesize %s') % (filesizeformat(settings.MAX_UPLOAD_SIZE), filesizeformat(cv._size)))
+            else:
+                raise forms.ValidationError(_('File type is not supported'))
         return cv
 
 
