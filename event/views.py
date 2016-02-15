@@ -32,6 +32,14 @@ def csv(request):
         w.writerow([p.first_name, p.last_name, p.email, p.date_joined, p.promo, p.want_cocktail])
     return response
 
+def email_list(request):
+    participants_list =  Participant.objects.filter(is_active=True)
+    text = ""
+    for p in participants_list:
+        text = text + p.email + ", "
+    return HttpResponse(text)
+
+
 def startups(request):
     startups = Startup.objects.all()
     return render(request, "event/startups.html",{'startups':startups})
