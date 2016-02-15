@@ -7,6 +7,8 @@ import json
 import hashlib
 from .forms import *
 from .models import Participant, Event, Startup
+from csv import writer
+from django.http import HttpResponse
 
 
 # Create your views here.
@@ -19,6 +21,16 @@ fields = ['hruid', 'email', 'firstname', 'lastname', 'promo', 'rights']
 def index(request):
     return render(request, "event/index.html", {'template':True, 'event':exists_event()})
 
+def csv(request):
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="liste.csv"'
+
+    w = writer(response)
+    participants_list =  Participant.objects.filter(is_active=True)
+
+    for p in participants_list:
+        w.writerow([p.first_name, p.last_name, p.email, p.date_joined, p.promo, p.want_cocktail])
+    return response
 
 def startups(request):
     startups = Startup.objects.all()

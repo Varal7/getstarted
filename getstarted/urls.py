@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^update$', views.update_cv, name='update_cv'),
     url(r'^startups$', views.startups, name='startups'),
     url(r'^fkz_answer$', views.fkz_answer, name='fkz_answer'),
+    url(r'^csv$', views.csv, name='csv'),
     url(r'^login$', views.fkz_do_login, name='login'),
     url(r'^login_required$', views.login_required, name='login_required'),
     url(r'^logout$', views.logout, name='logout'),
